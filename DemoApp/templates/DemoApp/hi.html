@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="en">
+<html>
+<head>
+    <link
+            href="https://fonts.googleapis.com/css?family=Quicksand:300,500"
+            rel="stylesheet"
+    />
+    <link
+            rel="stylesheet"
+            href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+            integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+            crossorigin="anonymous"
+    />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js">
+
+    </script>
+
+
+    <style>
+        .buttonSubmit {
+          background-color: #4caf50;
+          border: none;
+          color: white;
+          padding: 15px 32px;
+          text-align: center;
+          text-decoration: none;
+          display: inline-block;
+          font-size: 16px;
+          margin: 4px 2px;
+          cursor: pointer;
+        }
+
+        .del_img {
+          background-color: Transparent;
+          background-repeat: no-repeat;
+          border: none;
+          cursor: pointer;
+          overflow: hidden;
+          outline: none;
+        }
+
+        table {
+          font-family: arial, sans-serif;
+          border-collapse: collapse;
+          width: 100%;
+        }
+
+        td,
+        th {
+          border: 1px solid #dddddd;
+          text-align: left;
+          padding: 8px;
+        }
+
+        tr:nth-child(even) {
+          background-color: #dddddd;
+        }
+
+        body {
+          font-family: "Quicksand", sans-serif;
+        }
+        .button {
+          border-radius: 50px;
+          background-color: #ff9633;
+          border: none;
+          color: #ffffff;
+          text-align: center;
+          font-size: 15px;
+          padding: 10px;
+          width: 80px;
+          transition: all 0.5s;
+          cursor: pointer;
+          margin: 5px;
+          margin-left: 500px;
+        }
+
+        .button span {
+          cursor: pointer;
+          display: inline-block;
+          position: relative;
+          transition: 0.5s;
+        }
+
+        .button span:after {
+          content: "\00bb";
+          position: absolute;
+          opacity: 0;
+          top: 0;
+          right: -20px;
+          transition: 0.5s;
+        }
+
+        .button:hover span {
+          padding-right: 25px;
+        }
+
+        .button:hover span:after {
+          opacity: 1;
+          right: 0;
+        }
+
+        /* The Modal (background) */
+        .modal {
+          display: none; /* Hidden by default */
+          position: fixed; /* Stay in place */
+          z-index: 1; /* Sit on top */
+          padding-top: 100px; /* Location of the box */
+          left: 0;
+          top: 0;
+          width: 100%; /* Full width */
+          height: 100%; /* Full height */
+          overflow: auto; /* Enable scroll if needed */
+          background-color: rgb(0, 0, 0); /* Fallback color */
+          background-color: rgba(0, 0, 0, 0.4); /* Black w/ opacity */
+        }
+
+        /* Modal Content */
+        .modal-content {
+          position: relative;
+          background-color: #fefefe;
+          margin: auto;
+          padding: 0;
+          border: 1px solid #888;
+          width: 45%;
+
+          box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2),
+            0 6px 20px 0 rgba(0, 0, 0, 0.19);
+          -webkit-animation-name: animatetop;
+          -webkit-animation-duration: 0.4s;
+          animation-name: animatetop;
+          animation-duration: 0.4s;
+        }
+
+        /* Add Animation */
+        @-webkit-keyframes animatetop {
+          from {
+            top: -300px;
+            opacity: 0;
+          }
+          to {
+            top: 0;
+            opacity: 1;
+          }
+        }
+
+        @keyframes animatetop {
+          from {
+            top: -300px;
+            opacity: 0;
+          }
+          to {
+            top: 0;
+            opacity: 1;
+          }
+        }
+
+        /* The Close Button */
+        .close {
+          color: white;
+          float: right;
+          font-size: 28px;
+          font-weight: bold;
+        }
+
+        .close:hover,
+        .close:focus {
+          color: #000;
+          text-decoration: none;
+          cursor: pointer;
+        }
+
+        .modal-header {
+          padding: 2px 16px;
+          background-color: #ff9633;
+          color: white;
+        }
+
+        .modal-body {
+          padding: 2px 16px;
+        }
+
+        .modal-footer {
+          padding: 2px 16px;
+          background-color: #ff9633;
+          color: white;
+        }
+
+        ul {
+          list-style-type: none;
+          margin: 0;
+          padding: 0;
+          overflow: hidden;
+          background-color: #ff9633;
+        }
+
+        li {
+          float: left;
+        }
+
+        li a {
+          display: block;
+          color: white;
+          text-align: center;
+          padding: 14px 16px;
+          text-decoration: none;
+        }
+
+        li a:hover {
+          background-color: #fa7d34;
+        }
+
+    </style>
+</head>
+<body>
+<ul>
+    <li>
+        <div id="myBtn1"><a href="#AddCon">Alert Policies</a></div>
+    </li>
+    <li><a href="#contact">Test3</a></li>
+    <li><a href="#about">Test4</a></li>
+</ul>
+
+<!-- The Modal -->
+<div id="myModal" class="modal">
+    <!-- Modal content -->
+    <div class="modal-content">
+        <div class="modal-header">
+            <span class="close">&times;</span>
+            <h2>Alert Policies</h2>
+        </div>
+        <div class="modal-body">
+            <p style="font-size: 14px">
+                Please select an event parameter as well as the condition type and
+                value that apply.
+            </p>
+
+            <!-- parameter drop down -->
+            <form method="post">
+                <label for="Parameter">
+                    <b style="font-size: 13px">
+                        Event parameter to evaluate
+                    </b></label
+                >
+                <select
+                        name="Parameter"
+                        id="Parameter"
+                        style="width: 340px; font-family: 'Quicksand', sans-serif"
+                >
+                    <option disabled selected value>select a parameter</option>
+                    <option value="Subject">Subject</option>
+                    <option value="Text">Text</option>
+                </select>
+                <br/><br/>
+
+                <label for="Condition">
+                    <b style="font-size: 13px"> Type of condition </b></label
+                >
+                <select
+                        name="Condition"
+                        id="Condition"
+                        style="
+                  width: 340px;
+                  margin-left: 69px;
+                  font-family: 'Quicksand', sans-serif;
+                "
+                >
+                    <option disabled selected value>select a condition</option>
+                    <option value="Equals">Equals</option>
+                    <option value="Contain">Contain</option>
+                    <option value="NotContain">Does not contain</option>
+                </select>
+                <br/><br/>
+
+                <label for="valuetomatch">
+                    <b style="font-size: 13px"> Value to match</b></label
+                >
+                <input
+                        type="text"
+                        id="valuetomatch"
+                        name="valuetomatch"
+                        style="
+                  width: 333px;
+                  margin-left: 80px;
+                  font-family: 'Quicksand', sans-serif;
+                "
+                />
+                <br/>
+                <br/>
+            </form>
+            <button class="button"><span>OK</span></button>
+        </div>
+    </div>
+</div>
+<table id="myTable">
+    <tr>
+        <th>Event Parameter</th>
+        <th>Condition</th>
+        <th>Value to match</th>
+        <th>Action</th>
+    </tr>
+</table>
+<br/>
+
+<button id="buttonSubmit">Submit</button>
+<script>
+//declare the array as a global
+var tableData = [];
+var URL="{% url 'test' %}"
+
+$(document).ready(function () {
+  $(".button").on("click", function () {
+    para = document.getElementById("Parameter").value;
+    condi = document.getElementById("Condition").value;
+    value2match = document.getElementById("valuetomatch").value;
+
+    if (para && condi && value2match !== null) {
+      var table = document.getElementById("myTable");
+      var row = table.insertRow(-1);
+      var cell1 = row.insertCell(0);
+      var cell2 = row.insertCell(1);
+      var cell3 = row.insertCell(2);
+      var cell4 = row.insertCell(3);
+      {% load static %}
+
+      cell1.innerHTML = document.getElementById("Parameter").value;
+      cell2.innerHTML = document.getElementById("Condition").value;
+      cell3.innerHTML = document.getElementById("valuetomatch").value;
+      cell4.innerHTML =
+        '<button  class = "del_img "onClick="delSpec(this)"><img src="{% static "DemoApp/deleteimg.png" %}" width="30" height="30"></button> </div>';
+
+      var myTab = document.getElementById("myTable");
+
+      // Only add the new row:
+      tableData.push([
+        document.getElementById("Parameter").value,
+        document.getElementById("Condition").value,
+        document.getElementById("valuetomatch").value
+      ]);
+
+      modal.style.display = "none";
+    } else {
+      alert("All the input box cannot be empty!");
+    }
+  });
+
+document.getElementById("buttonSubmit").onclick = function () {
+        alert(tableData);
+
+        var data = {'data[]': JSON.stringify(tableData), csrfmiddlewaretoken: '{{ csrf_token }}'};
+        $.post(URL, data);
+
+      };
+});
+
+function delSpec(node) {
+  let r = node.parentNode.parentNode;
+  tableData.splice(r.rowIndex - 1, 1);
+  r.parentNode.removeChild(r);
+}
+// Get the modal
+var modal = document.getElementById("myModal");
+
+// Get the button that opens the modal
+var btn = document.getElementById("myBtn1");
+
+// Get the <span> element that closes the modal
+var span = document.getElementsByClassName("close")[0];
+
+// When the user clicks on <span> (x), close the modal
+span.onclick = function () {
+  modal.style.display = "none";
+};
+
+// When the user clicks the button, open the modal
+btn.onclick = function () {
+  modal.style.display = "block";
+};
+
+// When the user clicks anywhere outside of the modal, close it
+window.onclick = function (event) {
+  if (event.target == modal) {
+    modal.style.display = "none";
+  }
+};
+
+</script>
+
+
+</body>
+</html>
